@@ -1,0 +1,23 @@
+export { Login } from './Login';
+export { Register } from './Register';
+export { ForgotPassword } from './ForgotPassword';
+export { ResetPassword } from './ResetPassword';
+export { Home } from './Home';
+export { default as BookAppointment } from './BookAppointment';
+export { PatientDashboard } from './PatientDashboard';
+export { Appointments } from './Appointments';
+export { AppointmentDetailsPage } from './AppointmentDetailsPage';
+export { default as FamilyMembers } from './FamilyMembers';
+export { default as AdminDashboard } from './AdminDashboard';
+export { StaffDashboard } from './StaffDashboard';
+export { ManualBookingPage } from './ManualBookingPage';
+export { AppointmentQueuePage } from './AppointmentQueuePage';
+export { RecordUploadPage } from './RecordUploadPage';
+export { PatientReportsPage } from './staff/PatientReports';
+export { DailyReportsPage } from './staff/DailyReports';
+export { QueueManagementPage } from './staff/QueueManagement';
+export { Messages } from './Messages';
+export { Profile } from './Profile';
+export { HealthRecords } from './HealthRecords';
+export { PaymentHistory } from './PaymentHistory';
+

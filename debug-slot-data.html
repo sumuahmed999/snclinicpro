@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Slot Data</title>
+</head>
+<body>
+    <h1>Debug Slot Data</h1>
+    <div id="output"></div>
+
+    <script>
+        async function testSlotAPI() {
+            try {
+                // Test the doctor slots API directly
+                const response = await fetch('http://localhost:8000/api/doctors/11/slots?date=2026-04-24', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('output').innerHTML = `
+                    <h2>API Response:</h2>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                    
+                    <h2>Slot Analysis:</h2>
+                    ${data.data.map(slot => `
+                        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                            <h3>Slot ${slot.id} (${slot.start_time} - ${slot.end_time})</h3>
+                            <p><strong>Max Capacity:</strong> ${slot.max_capacity}</p>
+                            <p><strong>Booked Count:</strong> ${slot.booked_count}</p>
+                            <p><strong>Available Capacity:</strong> ${slot.available_capacity}</p>
+                            <p><strong>Manual Calculation:</strong> ${slot.max_capacity - slot.booked_count}</p>
+                            <p><strong>Match:</strong> ${slot.available_capacity === (slot.max_capacity - slot.booked_count) ? 'YES' : 'NO'}</p>
+                        </div>
+                    `).join('')}
+                `;
+                
+            } catch (error) {
+                document.getElementById('output').innerHTML = `
+                    <h2>Error:</h2>
+                    <pre>${error.message}</pre>
+                `;
+            }
+        }
+        
+        // Run the test when page loads
+        testSlotAPI();
+    </script>
+</body>
+</html>
